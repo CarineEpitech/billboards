@@ -1,0 +1,4 @@
+reports/billboard_model.pkl
+src/__pycache__/
+__pycache__/
+*.pyc
