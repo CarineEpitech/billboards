@@ -122,7 +122,8 @@ def run_full_pipeline(config: dict) -> None:
     print("\n" + "═" * 60)
     print("  ÉTAPE 4/5 : ENTRAÎNEMENT DU MODÈLE")
     print("═" * 60)
-    trained_model, split_data, cv_results = model.training_pipeline(X, y, config)
+    trained_model, baseline, split_data, cv_results, comparison, lc_data = \
+        model.training_pipeline(X, y, config)
 
     # Sauvegarder le modèle
     model_pkl_path = "reports/billboard_model.pkl"
@@ -134,7 +135,10 @@ def run_full_pipeline(config: dict) -> None:
     print("\n" + "═" * 60)
     print("  ÉTAPE 5/5 : ÉVALUATION DU MODÈLE")
     print("═" * 60)
-    eval_report = evaluation.evaluation_pipeline(trained_model, split_data, cv_results, config)
+    eval_report = evaluation.evaluation_pipeline(
+        trained_model, baseline, split_data,
+        cv_results, comparison, lc_data, config
+    )
 
     # ─────────────────────────────────────────────────────────────
     # RÉSUMÉ FINAL
@@ -147,11 +151,15 @@ def run_full_pipeline(config: dict) -> None:
     print(f"  Panneaux générés     : {len(df_raw)}")
     print(f"  Panneaux après clean : {len(df_clean)}")
     print(f"  Features ML          : {len(feat_cols)}")
-    print(f"  CV R²                : {cv_results['cv_r2_mean']:.3f} ± {cv_results['cv_r2_std']:.3f}")
-    print(f"  Test R²              : {eval_report['test_metrics']['Test_R2']:.3f}")
-    print(f"  Test RMSE            : {eval_report['test_metrics']['Test_RMSE']:.2f} pts")
-    print(f"  Test MAE             : {eval_report['test_metrics']['Test_MAE']:.2f} pts")
-    print(f"\n  Graphiques           : reports/figures/")
+    print(f"  RF CV R²             : {cv_results['cv_r2_mean']:.3f} ± {cv_results['cv_r2_std']:.3f}")
+    print(f"  RF Test R²           : {eval_report['test_metrics']['Test_R2']:.3f}")
+    print(f"  RF Test RMSE         : {eval_report['test_metrics']['Test_RMSE']:.2f} pts")
+    print(f"  RF Test MAE          : {eval_report['test_metrics']['Test_MAE']:.2f} pts")
+    b_test = comparison["ridge_baseline"]["test"]
+    print(f"  Ridge Test R²        : {b_test['r2']:.3f}  (baseline)")
+    print(f"  Ridge Test RMSE      : {b_test['rmse']:.2f} pts (baseline)")
+    print(f"  RF vs Ridge (RMSE)   : {comparison['rf_vs_baseline']['rmse_gain_pct']:+.1f}%")
+    print(f"\n  Graphiques (6)       : reports/figures/")
     print(f"  Rapport JSON         : {config['paths']['model_output']}")
     print(f"  Modèle sauvegardé    : {model_pkl_path}")
     print("\n  Pipeline terminé avec succès.")
