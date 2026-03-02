@@ -1,0 +1,39 @@
+# ==============================================================================
+# DÉPENDANCES DU PROJET — Billboard Geolocation Cotonou
+# ==============================================================================
+# Installer avec : pip install -r requirements.txt
+# Testé avec Python 3.10+
+
+# Core data science
+numpy>=1.24.0
+pandas>=2.0.0
+scikit-learn>=1.3.0
+
+# Visualisation
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Configuration
+pyyaml>=6.0.0
+
+# Géospatial (V1 - optionnel)
+# geopy>=2.3.0
+
+# Notebooks (optionnel)
+# jupyter>=1.0.0
+# ipykernel>=6.0.0
+
+# V2 - ML avancé (décommenter pour roadmap)
+# xgboost>=1.7.0
+# shap>=0.42.0
+# optuna>=3.0.0            # Hyperparameter tuning
+
+# V2 - Géospatial avancé
+# geopandas>=0.13.0
+# folium>=0.14.0           # Cartes interactives
+# shapely>=2.0.0
+
+# V3 - Computer Vision (CNN)
+# torch>=2.0.0
+# torchvision>=0.15.0
+# Pillow>=9.0.0

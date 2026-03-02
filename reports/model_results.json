@@ -1,0 +1,86 @@
+{
+  "model_name": "RandomForestRegressor",
+  "hyperparameters": {
+    "n_estimators": 100,
+    "max_depth": 4,
+    "min_samples_split": 6,
+    "min_samples_leaf": 4,
+    "random_state": 42
+  },
+  "train_metrics": {
+    "Train_R2": 0.7547,
+    "Train_RMSE": 8.185,
+    "Train_MAE": 5.977,
+    "Train_MAPE_pct": 10.15,
+    "Train_MedAE": 4.09,
+    "Train_Within10pts_pct": 76.5
+  },
+  "test_metrics": {
+    "Test_R2": 0.2325,
+    "Test_RMSE": 18.474,
+    "Test_MAE": 17.361,
+    "Test_MAPE_pct": 26.43,
+    "Test_MedAE": 19.575,
+    "Test_Within10pts_pct": 22.2
+  },
+  "cross_validation": {
+    "cv_r2_mean": -0.168,
+    "cv_r2_std": 0.4245,
+    "cv_r2_all": [
+      -0.9462,
+      -0.2781,
+      0.2452,
+      0.0704,
+      0.0685
+    ],
+    "n_folds": 5
+  },
+  "diagnosis": "Sur-ajustement détecté (gap=0.522). Augmenter min_samples_leaf ou réduire max_depth.",
+  "top_10_features": [
+    {
+      "feature": "panel_type_enc",
+      "importance_pct": 26.15
+    },
+    {
+      "feature": "traffic_flow_estim",
+      "importance_pct": 13.97
+    },
+    {
+      "feature": "longitude",
+      "importance_pct": 10.38
+    },
+    {
+      "feature": "road_type_enc",
+      "importance_pct": 8.97
+    },
+    {
+      "feature": "log_traffic",
+      "importance_pct": 7.56
+    },
+    {
+      "feature": "effective_exposure_hours",
+      "importance_pct": 5.09
+    },
+    {
+      "feature": "height_m",
+      "importance_pct": 4.61
+    },
+    {
+      "feature": "latitude",
+      "importance_pct": 4.38
+    },
+    {
+      "feature": "competition_radius_500m",
+      "importance_pct": 3.77
+    },
+    {
+      "feature": "pedestrian_density_score",
+      "importance_pct": 2.92
+    }
+  ],
+  "dataset_config": {
+    "n_samples": 45,
+    "noise_level": 0.15,
+    "test_size": 0.2
+  }
+}
