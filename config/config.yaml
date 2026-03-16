@@ -9,12 +9,22 @@ project:
   country: "Benin"
 
 # Zone géographique de Cotonou (bbox approximative)
+# HISTORIQUE :
+#   V1 (2026-03-16) : lat [6.340–6.405] / lon [2.340–2.430] — bbox simulée initiale
+#   V2 (2026-03-16) : élargie suite à l'analyse du premier export OSM réel (DEC-011)
+#                     5 panneaux OSM réels détectés à lat ~6.41–6.42 (nord de Cotonou)
+#                     1 panneau à lon ~2.447 (est de Cotonou)
 geography:
-  lat_min: 6.340
-  lat_max: 6.405
-  lon_min: 2.340
-  lon_max: 2.430
+  lat_min: 6.330
+  lat_max: 6.430
+  lon_min: 2.330
+  lon_max: 2.450
   crs: "EPSG:4326"
+  # Cœur historique V1 (conservé pour référence et filtrage)
+  lat_core_min: 6.340
+  lat_core_max: 6.405
+  lon_core_min: 2.340
+  lon_core_max: 2.430
 
 # Paramètres de génération des données
 data_generation:

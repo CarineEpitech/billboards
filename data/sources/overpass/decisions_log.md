@@ -132,4 +132,72 @@
 
 ---
 
+---
+
+## Décisions — 2026-03-16 (mise à jour après analyse du premier export OSM)
+
+---
+
+### [DEC-010] Hypothèse H3 partiellement infirmée — OSM contient des panneaux à Cotonou
+
+- **Date :** 2026-03-16 (après analyse de export.geojson)
+- **Décision :** L'hypothèse H3 (*"les panneaux publicitaires ne sont pas taggés dans OSM Cotonou"*) est **partiellement infirmée**. On a trouvé 11 panneaux avec `advertising=billboard` dans une zone élargie autour de Cotonou.
+- **Contexte :** Premier export Overpass Turbo réel chargé et analysé. Fichier : `billboards_osm_raw.geojson`, exporté le 2026-03-16.
+- **Justification :** Les données existent mais sont très partielles (11 panneaux au total, dont 7 dans/près de Cotonou et 4 probablement à Porto-Novo). C'est un point de départ réel, pas un dataset complet.
+- **Impact :**
+  - Le dataset V2 commence avec 7 panneaux réels (zone Cotonou élargie)
+  - H3 est reformulée : *"OSM contient quelques panneaux à Cotonou mais la couverture est très partielle"*
+  - On doit chercher d'autres tags OSM pour compléter (voir DEC-013)
+- **Statut :** VALIDÉE
+
+---
+
+### [DEC-011] Élargissement de la BBox Cotonou suite aux données réelles
+
+- **Date :** 2026-03-16
+- **Décision :** La BBox du projet est élargie de `(6.340–6.405, 2.340–2.430)` à `(6.330–6.430, 2.330–2.450)`.
+- **Contexte :** 5 des 11 panneaux OSM trouvés sont à `lat ~6.41–6.42`, juste au nord de l'ancienne limite `lat_max=6.405`. 1 panneau est à `lon ~2.447`, juste à l'est de `lon_max=2.430`.
+- **Justification :** Les données réelles prouvent que la bbox V1 était trop conservative. Rogner des données réelles pour respecter une limite arbitraire serait une erreur méthodologique.
+- **Impact :**
+  - `config/config.yaml` mis à jour (bbox principale élargie, bbox V1 conservée sous `lat_core_*`)
+  - L'ancienne bbox est conservée dans la config comme `lat_core_min/max` et `lon_core_min/max`
+  - Tous les scripts OSM utiliseront la nouvelle bbox
+- **Décision V1 originale conservée :** bbox `(6.340–6.405, 2.340–2.430)` dans `lat_core_*`
+- **Statut :** VALIDÉE
+
+---
+
+### [DEC-012] Exclusion des panneaux hors zone (Porto-Novo cluster)
+
+- **Date :** 2026-03-16
+- **Décision :** Les 4 panneaux OSM à `lon ~2.676, lat ~6.516` sont classés `hors_zone` et exclus du dataset Cotonou.
+- **Contexte :** Ces 4 panneaux (`node/5174487056`, `5174487057`, `5588568313`, `5588595893`) sont à ~25km à l'est de Cotonou, probablement dans la zone Porto-Novo / Sèmè-Kpodji.
+- **Justification :** Ce projet est centré sur Cotonou. Mélanger des données de Porto-Novo biaiserait le modèle (le contexte urbain est différent). Ces données seront conservées dans le fichier brut mais filtrées dans le pipeline.
+- **Impact :** Script `00_load_real_billboards.py` applique le filtre `zone != "hors_zone"`. Les données sont conservées dans `billboards_osm_raw.geojson` (jamais supprimées).
+- **Statut :** VALIDÉE
+
+---
+
+### [DEC-013] Recherche étendue aux autres tags advertising OSM
+
+- **Date :** 2026-03-16
+- **Décision :** Élargir les requêtes Overpass à tous les types de tags `advertising` (pas seulement `billboard`) pour maximiser la collecte de panneaux réels.
+- **Contexte :** Le premier export utilisait uniquement `advertising=billboard`. D'autres types existent : `board`, `column`, `screen`, `poster`, `totem`.
+- **Justification :** Un dataset de 7 panneaux est insuffisant pour entraîner un modèle ML fiable. On doit maximiser la collecte avant de conclure sur le volume disponible.
+- **Impact :** Nouvelles requêtes Q11–Q15 ajoutées dans `overpass_queries.md`. Un deuxième export OSM sera effectué et intégré.
+- **Statut :** VALIDÉE
+
+---
+
+### [DEC-014] Ajout de la feature `is_lit` au modèle
+
+- **Date :** 2026-03-16
+- **Décision :** La feature `is_lit` (panneau éclairé la nuit, issu du tag OSM `lit=yes`) est ajoutée au modèle V2.
+- **Contexte :** 7 des 11 panneaux OSM ont `lit=yes`. Cette donnée n'existait pas en V1 (simulée indirectement via `panel_type_enc`).
+- **Justification :** Un panneau éclairé est visible 24h/24 → impact direct sur la visibilité. C'est une feature réelle, gratuite, et disponible dans OSM pour les panneaux taggés.
+- **Impact :** `is_lit` sera ajoutée dans la liste `features.numerical` de `config.yaml` lors de la construction du dataset V2.
+- **Statut :** VALIDÉE
+
+---
+
 *Ce journal sera enrichi à chaque nouvelle décision. Aucune entrée ne sera supprimée.*

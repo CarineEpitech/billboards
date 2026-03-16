@@ -112,4 +112,60 @@ data/sources/overpass/
 
 ---
 
+---
+
+## 2026-03-16 — Analyse du premier export OSM réel + mise à jour Option A/B
+
+### Contexte
+Premier fichier GeoJSON réel récupéré depuis Overpass Turbo par Carine :
+`export.geojson` — requête `advertising=billboard` sur la zone Cotonou.
+
+### Découvertes
+
+**OSM contient des panneaux à Cotonou (H3 partiellement infirmée)**
+- 11 panneaux trouvés avec `advertising=billboard`
+- 7 sont dans/proches de Cotonou (exploitables)
+- 4 sont probablement à Porto-Novo (exclus)
+
+**Attributs disponibles dans ce fichier :**
+- `lit=yes` → panneau éclairé — nouvelle feature `is_lit` (non présente en V1)
+- `name` → 1 panneau nommé ("Pharmacie Camp Guezo")
+- `source=survey` → 2 panneaux issus de collecte terrain
+
+**Problème découvert : bbox trop petite**
+- 5 panneaux à `lat 6.41–6.42` sont au nord de notre limite `lat_max=6.405`
+- 1 panneau à `lon 2.447` est à l'est de notre limite `lon_max=2.430`
+
+### Ce qui a été produit dans cette session
+
+#### Nouveau fichier
+- `data/sources/overpass/raw/billboards_osm_raw.geojson` — copie du premier export OSM
+
+#### Script créé
+- `scripts/00_load_real_billboards.py` — parse le GeoJSON, filtre les zones, produit `billboards_osm_v1.csv`
+
+#### Fichiers mis à jour
+- `config/config.yaml` — bbox élargie à (6.330–6.430, 2.330–2.450), ancienne bbox conservée sous `lat_core_*`
+- `decisions_log.md` — 5 nouvelles décisions (DEC-010 à DEC-014)
+- `overpass_queries.md` — 5 nouvelles requêtes (Q11–Q15) couvrant tous les types advertising + nouvelle bbox
+
+### Décisions de cette session
+
+| ID | Décision | Statut |
+|---|---|---|
+| DEC-010 | H3 partiellement infirmée | VALIDÉE |
+| DEC-011 | BBox élargie | VALIDÉE |
+| DEC-012 | Exclusion panneaux Porto-Novo | VALIDÉE |
+| DEC-013 | Recherche étendue autres tags advertising | VALIDÉE |
+| DEC-014 | Feature `is_lit` ajoutée au modèle V2 | VALIDÉE |
+
+### Prochaines étapes (à faire)
+
+1. **Exécuter Q14 / Q15** sur Overpass Turbo navigateur → récupérer tous les types advertising
+2. **Intégrer les nouveaux exports** via `00_load_real_billboards.py`
+3. **Lancer les scripts 01–03** pour enrichir les 7 panneaux avec les features contextuelles
+4. **Lancer 04** pour produire `osm_features_per_billboard.csv`
+
+---
+
 *Historique ouvert le 2026-03-16. Chaque session future ajoutera une nouvelle entrée datée.*

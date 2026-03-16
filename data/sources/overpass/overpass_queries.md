@@ -378,4 +378,134 @@ out geom;
 
 ---
 
-*Fichier créé le 2026-03-16. Les requêtes sont à tester sur https://overpass-turbo.eu/ avant toute automatisation.*
+---
+
+## MISE À JOUR — 2026-03-16 (Option B : élargissement des requêtes advertising)
+
+> **Contexte :** Le premier export OSM (`advertising=billboard`) a retourné 11 panneaux.
+> C'est insuffisant pour un modèle ML. On élargit à tous les sous-types de tags `advertising`.
+> Décision liée : DEC-013.
+
+---
+
+## Q11 — Panneaux de type `board` (panneaux fixes classiques)
+
+### La requête
+```overpassql
+[out:json][timeout:60];
+(
+  node["advertising"="board"](6.330,2.330,6.430,2.450);
+  way["advertising"="board"](6.330,2.330,6.430,2.450);
+);
+out geom;
+```
+
+### Explication
+`advertising=board` désigne les panneaux fixes de taille moyenne, souvent muraux
+ou sur poteaux, différents des grands `billboard`. En Afrique de l'Ouest,
+beaucoup de supports publicitaires correspondent à ce tag plutôt qu'à `billboard`.
+
+### Ce que ça produit
+Des panneaux supplémentaires à ajouter à `billboards_osm_raw.geojson`.
+
+---
+
+## Q12 — Écrans digitaux (`screen`)
+
+### La requête
+```overpassql
+[out:json][timeout:60];
+(
+  node["advertising"="screen"](6.330,2.330,6.430,2.450);
+  way["advertising"="screen"](6.330,2.330,6.430,2.450);
+);
+out geom;
+```
+
+### Explication
+`advertising=screen` = écrans LED/LCD publicitaires numériques.
+Correspond à `panel_type=digital` dans notre modèle V1. Feature `is_lit=1` implicite.
+
+---
+
+## Q13 — Colonnes publicitaires (`column`)
+
+### La requête
+```overpassql
+[out:json][timeout:60];
+(
+  node["advertising"="column"](6.330,2.330,6.430,2.450);
+  node["advertising"="poster"](6.330,2.330,6.430,2.450);
+  node["advertising"="totem"](6.330,2.330,6.430,2.450);
+);
+out body;
+```
+
+### Explication
+- `column` = colonne Morris ou similaire (cylindrique, plusieurs affiches)
+- `poster` = panneau d'affichage de petite taille (4m² typiquement)
+- `totem` = structure verticale en façade (fréquent devant les commerces)
+
+---
+
+## Q14 — Recherche large : tous les objets `advertising` (requête filet)
+
+> **Usage :** Pour ne rien manquer. À utiliser après les requêtes ciblées pour vérifier
+> s'il n'existe pas d'autres sous-types présents à Cotonou.
+
+### La requête
+```overpassql
+[out:json][timeout:60];
+(
+  node["advertising"](6.330,2.330,6.430,2.450);
+  way["advertising"](6.330,2.330,6.430,2.450);
+);
+out geom;
+```
+
+### Explication
+`["advertising"]` sans valeur = *"tout objet qui a un tag advertising, quelle que soit sa valeur"*.
+Permet de découvrir des sous-types inattendus (ex: `advertising=banner`, `advertising=sign`...).
+
+### Ce que ça produit
+Une liste exhaustive de tous les supports publicitaires dans OSM autour de Cotonou.
+On pourra ensuite grouper par type et décider lesquels inclure dans le dataset.
+
+---
+
+## Q15 — Requête consolidée advertising (tous types, nouvelle bbox)
+
+> Remplace la requête consolidée précédente pour utiliser la **nouvelle bbox élargie**.
+
+```overpassql
+[out:json][timeout:90];
+(
+  // Tous les types de supports publicitaires
+  node["advertising"](6.330,2.330,6.430,2.450);
+  way["advertising"](6.330,2.330,6.430,2.450);
+
+  // Routes principales (nouvelle bbox)
+  way["highway"~"trunk|primary|secondary|tertiary"](6.330,2.330,6.430,2.450);
+
+  // Marchés et commercial
+  node["amenity"="marketplace"](6.330,2.330,6.430,2.450);
+  way["amenity"="marketplace"](6.330,2.330,6.430,2.450);
+  way["landuse"~"commercial|retail"](6.330,2.330,6.430,2.450);
+
+  // Transport
+  node["highway"="bus_stop"](6.330,2.330,6.430,2.450);
+  node["amenity"="bus_station"](6.330,2.330,6.430,2.450);
+
+  // Administratif
+  relation["boundary"="administrative"]["admin_level"~"7|8"](6.330,2.330,6.430,2.450);
+  node["place"~"suburb|neighbourhood"](6.330,2.330,6.430,2.450);
+);
+out geom;
+```
+
+> **Note :** BBox mise à jour de `(6.340,2.340,6.405,2.430)` à `(6.330,2.330,6.430,2.450)`
+> suite à DEC-011. L'ancienne requête consolidée reste dans l'historique ci-dessus pour traçabilité.
+
+---
+
+*Dernière mise à jour : 2026-03-16. Requêtes Q11–Q15 ajoutées suite à l'analyse du premier export OSM.*
