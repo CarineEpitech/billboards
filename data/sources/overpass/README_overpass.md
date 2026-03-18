@@ -15,8 +15,9 @@
 3. [Ce qu'on peut extraire](#ce-quon-peut-extraire)
 4. [Ce qu'on NE PEUT PAS extraire](#ce-quon-ne-peut-pas-extraire)
 5. [Limites importantes](#limites-importantes)
-6. [Place dans la future base de données](#place-dans-la-future-base-de-données)
-7. [Sources futures — hors périmètre](#sources-futures--hors-périmètre)
+6. [Tableau synthétique des features du projet](#tableau-synthétique-des-features-du-projet)
+7. [Place dans la future base de données](#place-dans-la-future-base-de-données)
+8. [Sources futures — hors périmètre](#sources-futures--hors-périmètre)
 
 ---
 
@@ -121,6 +122,60 @@ ne pas encore être dans OSM.
 ### 4. Aucune donnée propriétaire
 OSM est libre mais ne contient aucune donnée commerciale privée
 (ex : comptage de véhicules des sociétés de trafic).
+
+---
+
+## Tableau synthétique des features du projet
+
+> **Ajouté le 2026-03-18** — Vue d'ensemble de toutes les variables, toutes sources.
+> Pour le détail complet de chaque variable, voir `features_catalog_cotonou.md`.
+>
+> **Légende difficulté :** ★☆☆ = facile · ★★☆ = moyen · ★★★ = difficile
+> **Statut var. :** B = Brute · P = Proxy · D = Dérivée · C = Composite
+
+| Famille | Variable(s) | Description | Statut var. | Source principale | Difficulté | Priorité |
+|---|---|---|---|---|---|---|
+| **Accessibilité routière** | `road_type` | Type de la route la plus proche | B | OSM `highway=*` | ★☆☆ | Immédiat |
+| | `distance_to_main_road_m` | Distance en m à la route principale | D | OSM + calcul | ★★☆ | Immédiat |
+| | `road_lanes` | Nombre de voies | B | OSM (partiel) | ★★☆ | V2 |
+| **Topologie réseau** | `nb_intersections_200m` | Carrefours dans rayon 200m | D | OSM nœuds | ★★☆ | Immédiat |
+| | `has_traffic_signals_200m` | Présence de feux | B | OSM | ★☆☆ | V2 |
+| | `degree_nearest_intersection` | Branches du carrefour le plus proche | D | osmnx graphe | ★★★ | V3 |
+| **Attractivité urbaine** | `nb_markets_500m` | Marchés dans rayon 500m | P | OSM amenity | ★☆☆ | Immédiat |
+| | `nb_transport_stops_500m` | Arrêts transport dans 500m | P | OSM highway | ★☆☆ | Immédiat |
+| | `nb_schools_500m` | Écoles dans 500m | P | OSM amenity | ★☆☆ | Immédiat |
+| | `commercial_density_500m` | Commerces dans 500m | P | OSM shop | ★☆☆ | Immédiat |
+| | `nb_health_facilities_500m` | Structures de santé dans 500m | P | OSM amenity | ★☆☆ | V2 |
+| | `nb_fuel_stations_500m` | Stations-service dans 500m | P | OSM amenity | ★☆☆ | V2 |
+| **Densité humaine** | `pedestrian_density_score` | Score 0–100 fréquentation piétonne | C | POI OSM calculé | ★★☆ | Immédiat |
+| | `population_density_500m` | Habitants estimés dans 500m | B | WorldPop raster | ★★☆ | V2 |
+| | `traffic_flow_estim` | Flux véhiculaire/jour | P | Simulation / API | ★★★ | V2–V3 |
+| **Morphologie urbaine** | `land_use_type` | Type d'occupation du sol | B | OSM landuse | ★★☆ | V2 |
+| | `building_density_500m` | Densité du bâti dans 500m | P | GHSL raster | ★★★ | V3 |
+| | `is_coastal` | À moins de 1km de la mer | D | Calcul GPS | ★☆☆ | V2 |
+| | `north_of_lagoon` | Au nord de la lagune de Cotonou | D | Calcul GPS | ★☆☆ | V2 |
+| **Panneau / Exposition** | `panel_type` → `panel_type_enc` | Type de support (digital, statique…) | B | Terrain / OSM | ★☆☆ | Immédiat |
+| | `is_lit` | Éclairé la nuit (`lit=yes`) | B | OSM (disponible) | ★☆☆ | **Disponible** |
+| | `height_m` | Hauteur en mètres | B | Terrain | ★★★ | V2 |
+| | `size_m2` | Surface en m² | B | Terrain | ★★★ | V2 |
+| | `hours_of_daylight_exposure` | Heures d'exposition solaire | P | Simulation | ★★☆ | V2 |
+| **Saturation** | `competition_radius_500m` | Panneaux concurrents dans 500m | B | OSM (partiel) | ★★☆ | V2 |
+| | `indice_saturation` | Competition × densité piétonne | C | Calculé | ★☆☆ | V2 |
+| **Contexte spatial** | `quartier` → `quartier_enc` | Nom du quartier | B | OSM admin | ★☆☆ | Immédiat |
+| | `latitude`, `longitude` | Coordonnées GPS | B | GPS / OSM | ★☆☆ | Immédiat |
+| | `distance_to_center_km` | Distance au centre-ville | D | Calcul GPS | ★☆☆ | Immédiat |
+| | `distance_to_beach_km` | Distance à la mer | D | Calcul GPS | ★☆☆ | V2 |
+| | `distance_to_port_km` | Distance au port | D | Calcul GPS | ★☆☆ | V2 |
+| | `geo_quadrant` | Quadrant NE/NW/SE/SW | D | Calcul GPS | ★☆☆ | V2 |
+| **Dérivées / Composites** | `ratio_surface_hauteur` | size_m2 / height_m | D | Calculé | ★☆☆ | V2 |
+| | `log_traffic` | log(1 + traffic_flow) | D | Calculé | ★☆☆ | V2 |
+| | `score_accessibilite` | Route + centre (normalisé) | C | Calculé | ★☆☆ | V2 |
+| | `is_digital` | Panneau numérique ? (binaire) | D | Calculé | ★☆☆ | Immédiat |
+| | `effective_exposure_hours` | Heures effectives (nuit incluse si lit) | D | Calculé | ★☆☆ | V2 |
+| | `age_panneau` | Ancienneté depuis installation | D | Terrain | ★★★ | V3 |
+
+> **Pour le détail complet (définition, exemple, limites, mode de calcul)** →
+> consulter `features_catalog_cotonou.md`
 
 ---
 
