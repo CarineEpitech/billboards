@@ -1,0 +1,46 @@
+panel_id,latitude,longitude,quartier,panel_type,road_type,height_m,size_m2,traffic_flow_estim,distance_to_main_road_m,distance_to_center_km,hours_of_daylight_exposure,pedestrian_density_score,competition_radius_500m,visibility_score,proprietaire,year_installed,has_photo
+COT-2025-001,6.36168,2.396004,Cotonou Centre,statique,boulevard,7.2,6.1,6825,26.2,1.136,11.8,78.9,2,76.3,Affichage Pro Bénin,2023,False
+COT-2025-002,6.38978,2.393764,Haie Vive,bache,boulevard,7.5,9.5,8151,9.7,2.235,10.5,82.9,2,70.5,Affichage Pro Bénin,2019,True
+COT-2025-003,6.37263,2.374345,Agla,bache,rue_secondaire,3.3,12.5,960,8.9,1.751,9.7,48.6,0,37.6,Côte d'Ivoire Affichage,2020,True
+COT-2025-004,6.377746,2.376537,Cotonou Centre,bache,rue_principale,8.1,11.9,2014,23.9,1.716,8.5,,0,52.3,BéninMedia,2015,False
+COT-2024-005,6.358268,2.425005,Dantokpa,statique,rue_secondaire,,5.9,1279,11.2,4.075,9.0,83.0,0,68.3,BéninMedia,2016,True
+COT-2025-006,6.364418,2.370022,Cadjehoun,led_small,rue_principale,4.9,,3470,26.7,2.289,8.2,70.8,1,67.2,BéninMedia,2018,False
+COT-2025-007,6.365764,2.391861,Cotonou Centre,statique,rue_principale,5.5,8.2,2074,22.9,0.513,12.7,,1,69.4,Côte d'Ivoire Affichage,2024,True
+COT-2024-008,6.353875,2.402508,Zongo,digital,avenue,7.6,4.1,4389,13.2,2.26,7.5,50.8,1,98.0,Atlantic Billboard,2023,True
+COT-2024-009,6.36957,2.404143,Cotonou Centre,bache,boulevard,5.2,4.1,7431,18.7,1.561,11.3,76.4,2,67.5,Mairie de Cotonou,2024,True
+COT-2025-010,6.363381,2.412633,Zongo,bache,rue_secondaire,9.0,8.4,1167,16.6,2.603,12.8,63.9,0,38.7,Mairie de Cotonou,2017,True
+COT-2025-011,6.346389788870548,2.403723695780214,Cadjehoun,statique,rue_principale,7.0,6.7,1933,11.0,2.954,10.6,28.2,0,75.4,Mairie de Cotonou,2022,False
+COT-2024-012,6.370245,2.386127,Cotonou Centre,statique,avenue,9.0,6.7,7089,0.9,0.428,9.2,74.6,2,97.6,Atlantic Billboard,2020,True
+COT-2024-013,6.372525,2.399647,Cotonou Centre,bache,rue_principale,2.8,,3372,52.7,1.1,11.8,67.3,1,35.4,Côte d'Ivoire Affichage,2020,False
+COT-2024-014,6.365627,2.375054,Cadjehoun,digital,rue_secondaire,2.6,11.8,830,29.9,1.719,5.6,57.8,0,85.4,MediaOut SARL,2016,False
+COT-2025-015,6.375814,2.362425,Mènontin,bache,rue_secondaire,2.9,,1380,18.6,3.11,6.2,67.2,0,53.4,BéninMedia,2021,False
+COT-2025-016,6.38411,2.37042,Agla,bache,boulevard,7.2,17.9,7510,8.9,2.668,,16.2,1,75.9,Affichage Pro Bénin,2017,True
+COT-2025-017,6.364577,2.359324,Mènontin,led_small,rue_secondaire,8.8,9.6,1500,53.6,3.437,11.5,32.6,3,67.5,Atlantic Billboard,2024,False
+COT-2024-018,6.362424,2.377464,Cadjehoun,led_small,rue_secondaire,8.0,4.9,1531,18.5,1.619,9.8,77.5,1,76.1,MediaOut SARL,2019,False
+COT-2024-019,6.34,2.355271,Fidjrossè,digital,boulevard,3.6,12.3,9143,56.8,5.076,6.8,,3,98.0,Mairie de Cotonou,2015,False
+COT-2024-020,6.350422,2.421618,Dantokpa,statique,avenue,8.3,12.2,4231,27.1,4.11,13.0,65.4,1,80.3,Mairie de Cotonou,2019,True
+COT-2024-021,6.358517,2.364194,Fidjrossè,bache,boulevard,,5.6,8746,0.4,3.119,9.6,50.8,3,60.6,BéninMedia,2023,False
+COT-2024-022,6.35906,2.416636,Akpakpa,statique,rue_secondaire,1.5,4.9,1270,49.7,3.179,7.1,83.9,3,49.4,Propriétaire Privé Inconnu,2023,True
+COT-2025-023,6.386429,2.408766,Haie Vive,statique,boulevard,7.7,6.8,9201,8.9,2.759,7.7,49.0,0,84.8,Atlantic Billboard,2017,False
+COT-2025-024,6.368185,2.403538,Haie Vive,statique,rue_secondaire,2.8,9.1,1229,1.5,1.507,9.4,81.1,0,60.2,WAfrica Displays,2021,True
+COT-2025-025,6.350416,2.348061,Gbégamey,digital,avenue,8.7,4.1,5217,37.6,5.112,8.2,72.3,2,999.0,Atlantic Billboard,2020,False
+COT-2024-026,6.361546,2.398637,Zongo,bache,avenue,8.0,14.2,4058,4.9,1.337,11.3,32.6,1,63.3,Côte d'Ivoire Affichage,2023,True
+COT-2024-027,6.34498,2.396284,Dantokpa,led_small,rue_secondaire,6.2,9.8,1545,25.7,2.862,,78.3,1,82.5,WAfrica Displays,2019,False
+COT-2025-028,6.360469,2.411231,Zongo,statique,boulevard,7.4,18.9,6310,24.8,2.57,5.1,63.2,1,83.6,Propriétaire Privé Inconnu,2020,True
+COT-2024-029,6.383981,2.368566,Agla,statique,rue_principale,1.5,11.3,2734,20.3,2.828,8.2,26.0,3,51.7,BéninMedia,2020,True
+COT-2025-030,6.362409,2.393876,Zongo,statique,boulevard,2.0,10.3,7331,12.4,0.945,9.7,46.2,0,86.6,BéninMedia,2024,False
+COT-2024-031,6.342721,2.390749,Zongo,bache,rue_secondaire,6.0,3.6,1225,46.2,3.029,4.9,31.5,3,34.4,Mairie de Cotonou,2023,True
+COT-2024-032,6.380196,2.384979,Cotonou Centre,bache,rue_secondaire,7.7,2.7,744,1.9,1.26,9.6,63.6,5,50.3,Mairie de Cotonou,2023,False
+COT-2024-033,6.355732,2.406707,Akpakpa,statique,avenue,9.4,34.1,4802,24.1,2.43,8.5,57.5,1,85.6,WAfrica Displays,2019,True
+COT-2025-034,6.371864,2.366922,Mènontin,led_small,rue_principale,7.2,5.8,2853,8.7,2.554,10.5,51.8,1,74.5,,2021,False
+COT-2025-035,6.362781,2.387261,Cotonou Centre,bache,avenue,3.7,5.4,5832,15.1,0.856,5.7,85.7,1,65.7,Côte d'Ivoire Affichage,2015,False
+COT-2024-036,6.360001,2.370014,Fidjrossè,statique,rue_secondaire,6.3,5.5,1149,3.0,2.468,11.4,7.3,3,51.9,Côte d'Ivoire Affichage,2015,True
+COT-2025-037,6.365904,2.41804,Dantokpa,digital,avenue,1.5,4.3,4185,14.3,3.126,10.8,62.5,1,98.0,Affichage Pro Bénin,2017,False
+COT-2024-038,6.381231,2.379024,Agla,digital,avenue,9.2,8.8,5702,1.1,1.738,10.4,39.6,2,98.0,,2015,True
+COT-2025-039,6.365014,2.429502,Dantokpa,statique,rue_secondaire,,21.7,1047,102.9,4.393,8.3,63.3,1,78.5,Mairie de Cotonou,2015,False
+COT-2025-040,6.366997,2.425083,Dantokpa,statique,boulevard,1.5,7.8,6764,82.7,3.885,9.6,97.5,2,73.4,Côte d'Ivoire Affichage,2016,True
+COT-2025-041,6.36159,2.399362,Zongo,led_small,rue_principale,3.4,7.6,3153,10.7,1.392,5.9,66.8,1,84.1,,2016,False
+COT-2025-042,6.36024,2.34833,Gbégamey,statique,rue_principale,8.6,6.8,4322,40.1,4.723,7.6,54.6,1,62.2,Affichage Pro Bénin,2015,False
+COT-2025-043,6.365885,2.37415,Cadjehoun,digital,rue_secondaire,5.3,2.1,1533,38.6,1.807,12.0,17.6,1,85.3,Mairie de Cotonou,2019,False
+COT-2024-044,6.38642,2.392699,Cadjehoun,digital,rue_secondaire,5.6,7.0,1082,21.8,1.847,,55.4,2,82.3,Affichage Pro Bénin,2016,True
+COT-2025-028,6.360469,2.411231,Zongo,statique,avenue,2.9,7.8,4931,1.6,3.173,8.0,51.4,0,89.9,MediaOut SARL,2015,True

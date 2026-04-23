@@ -1,0 +1,10 @@
+reports/billboard_model.pkl
+src/__pycache__/
+__pycache__/
+*.pyc
+
+# Claude Code
+.claude/
+
+# Fichiers temporaires Office
+~$*

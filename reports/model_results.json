@@ -1,0 +1,127 @@
+{
+  "model_name": "RandomForestRegressor",
+  "hyperparameters": {
+    "n_estimators": 100,
+    "max_depth": 4,
+    "min_samples_split": 6,
+    "min_samples_leaf": 4,
+    "random_state": 42
+  },
+  "train_metrics": {
+    "Train_R2": 0.7547,
+    "Train_RMSE": 8.185,
+    "Train_MAE": 5.977,
+    "Train_MAPE_pct": 10.15,
+    "Train_MedAE": 4.09,
+    "Train_Within10pts_pct": 76.5
+  },
+  "test_metrics": {
+    "Test_R2": 0.2325,
+    "Test_RMSE": 18.474,
+    "Test_MAE": 17.361,
+    "Test_MAPE_pct": 26.43,
+    "Test_MedAE": 19.575,
+    "Test_Within10pts_pct": 22.2
+  },
+  "cross_validation": {
+    "cv_r2_mean": -0.168,
+    "cv_r2_std": 0.4245,
+    "cv_r2_all": [
+      -0.9462,
+      -0.2781,
+      0.2452,
+      0.0704,
+      0.0685
+    ],
+    "n_folds": 5
+  },
+  "diagnosis": "Overfitting significatif (gap=0.522). Augmenter min_samples_leaf, réduire max_depth.",
+  "model_comparison": {
+    "random_forest": {
+      "train": {
+        "r2": 0.7547,
+        "rmse": 8.185,
+        "mae": 5.977
+      },
+      "test": {
+        "r2": 0.2325,
+        "rmse": 18.474,
+        "mae": 17.361
+      }
+    },
+    "ridge_baseline": {
+      "train": {
+        "r2": 0.8482,
+        "rmse": 6.439,
+        "mae": 5.013
+      },
+      "test": {
+        "r2": 0.7182,
+        "rmse": 11.193,
+        "mae": 8.759
+      }
+    },
+    "rf_vs_baseline": {
+      "rmse_gain_pct": -65.0,
+      "r2_gain_absolute": -0.4857,
+      "rf_wins_on_test": false
+    }
+  },
+  "top_10_features": [
+    {
+      "feature": "panel_type_enc",
+      "importance_pct": 26.15,
+      "cumulative_pct": 26.2
+    },
+    {
+      "feature": "traffic_flow_estim",
+      "importance_pct": 13.97,
+      "cumulative_pct": 40.1
+    },
+    {
+      "feature": "longitude",
+      "importance_pct": 10.38,
+      "cumulative_pct": 50.5
+    },
+    {
+      "feature": "road_type_enc",
+      "importance_pct": 8.97,
+      "cumulative_pct": 59.5
+    },
+    {
+      "feature": "log_traffic",
+      "importance_pct": 7.56,
+      "cumulative_pct": 67.0
+    },
+    {
+      "feature": "effective_exposure_hours",
+      "importance_pct": 5.09,
+      "cumulative_pct": 72.1
+    },
+    {
+      "feature": "height_m",
+      "importance_pct": 4.61,
+      "cumulative_pct": 76.7
+    },
+    {
+      "feature": "latitude",
+      "importance_pct": 4.38,
+      "cumulative_pct": 81.1
+    },
+    {
+      "feature": "competition_radius_500m",
+      "importance_pct": 3.77,
+      "cumulative_pct": 84.9
+    },
+    {
+      "feature": "pedestrian_density_score",
+      "importance_pct": 2.92,
+      "cumulative_pct": 87.8
+    }
+  ],
+  "dataset_config": {
+    "n_samples": 45,
+    "noise_level": 0.15,
+    "test_size": 0.2
+  }
+}

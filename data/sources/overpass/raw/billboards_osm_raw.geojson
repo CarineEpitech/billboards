@@ -1,0 +1,184 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-turbo",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2026-03-16T09:53:46Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3539813703",
+        "advertising": "billboard",
+        "lit": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.3449765,
+          6.4130859
+        ]
+      },
+      "id": "node/3539813703"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3539813706",
+        "advertising": "billboard",
+        "lit": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.3433913,
+          6.4138972
+        ]
+      },
+      "id": "node/3539813706"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3539813707",
+        "advertising": "billboard",
+        "lit": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.3436677,
+          6.4145124
+        ]
+      },
+      "id": "node/3539813707"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3539813712",
+        "advertising": "billboard",
+        "lit": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.3434971,
+          6.4159343
+        ]
+      },
+      "id": "node/3539813712"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3539813714",
+        "advertising": "billboard",
+        "lit": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.3421017,
+          6.4208851
+        ]
+      },
+      "id": "node/3539813714"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3876476652",
+        "advertising": "billboard",
+        "lit": "yes",
+        "name": "Pharmacie Camp Guezo"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.4173179,
+          6.3562141
+        ]
+      },
+      "id": "node/3876476652"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4209991173",
+        "advertising": "billboard"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.4467585,
+          6.3717151
+        ]
+      },
+      "id": "node/4209991173"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5174487056",
+        "advertising": "billboard"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.6755481,
+          6.5157284
+        ]
+      },
+      "id": "node/5174487056"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5174487057",
+        "advertising": "billboard"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.6755976,
+          6.5156281
+        ]
+      },
+      "id": "node/5174487057"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5588568313",
+        "advertising": "billboard",
+        "lit": "yes",
+        "source": "survey"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.6759194,
+          6.5161457
+        ]
+      },
+      "id": "node/5588568313"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5588595893",
+        "advertising": "billboard",
+        "lit": "yes",
+        "source": "Survey"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.6756733,
+          6.51563
+        ]
+      },
+      "id": "node/5588595893"
+    }
+  ]
+}

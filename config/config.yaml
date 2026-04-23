@@ -1,0 +1,79 @@
+# ============================================================
+# Configuration globale du projet Billboard Cotonou
+# ============================================================
+
+project:
+  name: "Billboard Geolocation - Cotonou"
+  version: "1.0.0"
+  city: "Cotonou"
+  country: "Benin"
+
+# Zone géographique de Cotonou (bbox approximative)
+# HISTORIQUE :
+#   V1 (2026-03-16) : lat [6.340–6.405] / lon [2.340–2.430] — bbox simulée initiale
+#   V2 (2026-03-16) : élargie suite à l'analyse du premier export OSM réel (DEC-011)
+#                     5 panneaux OSM réels détectés à lat ~6.41–6.42 (nord de Cotonou)
+#                     1 panneau à lon ~2.447 (est de Cotonou)
+geography:
+  lat_min: 6.330
+  lat_max: 6.430
+  lon_min: 2.330
+  lon_max: 2.450
+  crs: "EPSG:4326"
+  # Cœur historique V1 (conservé pour référence et filtrage)
+  lat_core_min: 6.340
+  lat_core_max: 6.405
+  lon_core_min: 2.340
+  lon_core_max: 2.430
+
+# Paramètres de génération des données
+data_generation:
+  n_samples: 45
+  random_seed: 42
+  noise_level: 0.15        # 15% de bruit sur les features
+  missing_rate: 0.08       # 8% de valeurs manquantes injectées
+
+# Paramètres de nettoyage
+cleaning:
+  visibility_score_min: 0
+  visibility_score_max: 100
+  lat_tolerance: 0.001     # ~100m de tolérance GPS
+  lon_tolerance: 0.001
+
+# Feature engineering
+features:
+  target: "visibility_score_clean"
+  numerical:
+    - "latitude"
+    - "longitude"
+    - "traffic_flow_estim"
+    - "height_m"
+    - "size_m2"
+    - "distance_to_center_km"
+    - "distance_to_main_road_m"
+    - "hours_of_daylight_exposure"
+    - "pedestrian_density_score"
+    - "competition_radius_500m"
+  categorical:
+    - "panel_type_enc"
+    - "quartier_enc"
+    - "road_type_enc"
+
+# Modèle ML
+model:
+  algorithm: "RandomForestRegressor"
+  hyperparameters:
+    n_estimators: 100
+    max_depth: 4            # Réduit (6 → 4) : régularisation pour petit dataset
+    min_samples_split: 6    # Augmenté : un nœud doit avoir ≥6 obs pour splitter
+    min_samples_leaf: 4     # Augmenté (2 → 4) : feuilles plus robustes
+    random_state: 42
+  test_size: 0.2
+  cv_folds: 5
+
+# Chemins
+paths:
+  raw_data: "data/raw/billboards_raw.csv"
+  processed_data: "data/processed/billboards_clean.csv"
+  model_output: "reports/model_results.json"
+  figures_dir: "reports/figures/"
